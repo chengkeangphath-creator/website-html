@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>MyWorld - Marketing</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			background-color: #ffffff;
+			color: #333;
+		}
+
+		header {
+			background-color: #2f3f52;
+			padding: 16px 40px 18px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			z-index: 100;
+			box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset;
+		}
+
+		.header-left {
+			display: flex;
+			align-items: center;
+			gap: 30px;
+		}
+
+		.logo {
+			display: flex;
+			align-items: center;
+			gap: 12px;
+			color: white;
+			font-size: 22px;
+			font-weight: bold;
+			text-decoration: none;
+		}
+
+		.logo-icon {
+			width: 48px;
+			height: 48px;
+			background-color: #4ea3df;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 22px;
+		}
+
+		.country-selector {
+			background-color: rgba(255, 255, 255, 0.06);
+			color: white;
+			border: 1px solid rgba(255, 255, 255, 0.12);
+			padding: 10px 18px;
+			border-radius: 6px;
+			cursor: pointer;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			font-weight: 600;
+		}
+
+		.header-right {
+			display: flex;
+			gap: 15px;
+			align-items: center;
+		}
+
+		.btn {
+			padding: 10px 20px;
+			border: none;
+			border-radius: 6px;
+			cursor: pointer;
+			font-size: 14px;
+			font-weight: 600;
+			transition: all 0.3s ease;
+		}
+
+		.btn-anniversary {
+			background-color: transparent;
+			color: white;
+			border: 2px solid rgba(255, 255, 255, 0.95);
+			min-width: 140px;
+		}
+
+		.btn-anniversary:hover {
+			background-color: white;
+			color: #2c3e50;
+		}
+
+		.btn-upload {
+			background-color: #f1c24d;
+			color: #2e2e2e;
+			min-width: 145px;
+		}
+
+		.btn-upload:hover {
+			background-color: #f8b739;
+		}
+
+		.btn-login {
+			background-color: #4b98d6;
+			color: white;
+			min-width: 114px;
+		}
+
+		.btn-login:hover {
+			background-color: #2980b9;
+		}
+
+		nav {
+			background-color: #384c60;
+			padding: 0 40px;
+			display: flex;
+			gap: 40px;
+			box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+		}
+
+		nav a {
+			color: white;
+			text-decoration: none;
+			padding: 15px 0;
+			display: block;
+			font-size: 14px;
+			font-weight: 500;
+			transition: color 0.3s ease;
+			border-bottom: 3px solid transparent;
+		}
+
+		nav a:hover {
+			color: #f9c74f;
+			border-bottom-color: #f9c74f;
+		}
+
+		.hero {
+			background: linear-gradient(90deg, rgba(12, 28, 59, 0.95) 0%, rgba(20, 41, 80, 0.86) 42%, rgba(21, 41, 79, 0.76) 100%), url('img/1.jpg') right center/cover no-repeat;
+			padding: 72px 40px 70px;
+			min-height: 240px;
+			display: flex;
+			align-items: center;
+		}
+
+		.hero h1 {
+			color: #f4f6fb;
+			font-size: 44px;
+			font-weight: 300;
+			margin-bottom: 18px;
+		}
+
+		.hero p {
+			color: #f1c24d;
+			font-size: 15px;
+			font-weight: 700;
+			letter-spacing: 0.02em;
+		}
+
+		.container {
+			display: flex;
+			max-width: 1600px;
+			margin: 0 auto;
+			gap: 18px;
+			padding: 24px 16px 40px;
+		}
+
+		.sidebar {
+			width: 286px;
+			background-color: white;
+			padding: 0;
+			height: fit-content;
+			box-shadow: none;
+		}
+
+		.sidebar-section {
+			margin-bottom: 12px;
+			border-top: none;
+		}
+
+		.sidebar-section h3 {
+			background-color: #ececec;
+			font-size: 12px;
+			font-weight: 700;
+			text-transform: uppercase;
+			color: #2c3e50;
+			padding: 10px 14px;
+			letter-spacing: 0.04em;
+		}
+
+		.filter-item {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			padding: 10px 14px;
+			cursor: pointer;
+			font-size: 13px;
+			border-bottom: 1px solid #f0f0f0;
+			color: #333;
+		}
+
+		.filter-item input {
+			cursor: pointer;
+		}
+
+		.filter-count {
+			margin-left: auto;
+			color: #6f6f6f;
+			font-size: 12px;
+			min-width: 28px;
+			height: 28px;
+			border-radius: 50%;
+			background: #f4f4f4;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			text-align: right;
+		}
+
+		.main-content {
+			flex: 1;
+		}
+
+		.search-section {
+			background-color: white;
+			padding: 18px;
+			margin-bottom: 10px;
+			box-shadow: none;
+		}
+
+		.search-row {
+			display: flex;
+			gap: 10px;
+			align-items: center;
+		}
+
+		.search-field {
+			flex: 1;
+			min-width: 0;
+		}
+
+		.search-field input {
+			width: 100%;
+			border: 1px solid #ddd;
+			padding: 10px 12px;
+			font-size: 14px;
+			background: white;
+		}
+
+		.search-buttons {
+			display: flex;
+			gap: 10px;
+		}
+
+		.btn-reset {
+			background-color: white;
+			color: #2c3e50;
+			border: 1px solid #ddd;
+		}
+
+		.btn-search {
+			background-color: #335a92;
+			color: white;
+			padding-inline: 24px;
+			min-width: 76px;
+		}
+
+		.results-header {
+			padding: 10px 2px 10px;
+		}
+
+		.results-header h2 {
+			font-size: 29px;
+			color: #262626;
+			font-weight: 600;
+			line-height: 1.2;
+		}
+
+		.results-count {
+			display: inline-block;
+			margin-top: 8px;
+			padding: 8px 12px;
+			background-color: #f4f4f4;
+			color: #6b6b6b;
+			font-size: 13px;
+		}
+
+		.jobs-grid {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 18px 22px;
+		}
+
+		.job-card {
+			background-color: white;
+			box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04), 0 10px 24px rgba(0, 0, 0, 0.04);
+			padding: 18px 18px 16px;
+			min-height: 260px;
+		}
+
+		.job-header {
+			min-height: 120px;
+		}
+
+		.job-posted {
+			text-align: right;
+			color: #777;
+			font-size: 12px;
+			margin-bottom: 10px;
+		}
+
+		.job-title {
+			font-size: 20px;
+			color: #272727;
+			font-weight: 700;
+			line-height: 1.2;
+			margin-bottom: 10px;
+		}
+
+		.job-location {
+			color: #6b6b6b;
+			font-size: 13px;
+			margin-bottom: 12px;
+		}
+
+		.job-body {
+			color: #4c4c4c;
+			font-size: 13px;
+			line-height: 1.5;
+		}
+
+		.job-description {
+			margin-bottom: 18px;
+		}
+
+		.job-buttons {
+			display: flex;
+			gap: 12px;
+		}
+
+		.btn-apply,
+		.btn-read,
+		.btn-save {
+			flex: 1;
+			padding: 12px 10px;
+			border: none;
+			cursor: pointer;
+			font-weight: 600;
+			border-radius: 4px;
+		}
+
+		.btn-apply {
+			background-color: #4468a8;
+			color: white;
+		}
+
+		.btn-read,
+		.btn-save {
+			background-color: #e8bf44;
+			color: #302a14;
+		}
+
+		.pagination {
+			display: flex;
+			justify-content: center;
+			gap: 8px;
+			margin: 24px 0 20px;
+		}
+
+		.page-link {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			min-width: 36px;
+			height: 36px;
+			padding: 0 12px;
+			background: white;
+			color: #2c3e50;
+			text-decoration: none;
+			border: 1px solid #ddd;
+			font-size: 13px;
+		}
+
+		.page-link.active {
+			background: #335a92;
+			color: white;
+			border-color: #335a92;
+		}
+
+		.email-signup {
+			background: white;
+			padding: 18px;
+			margin-top: 18px;
+		}
+
+		.email-signup h3 {
+			font-size: 18px;
+			margin-bottom: 6px;
+			color: #262626;
+		}
+
+		.email-link {
+			color: #335a92;
+			text-decoration: none;
+		}
+
+		.footer {
+			background-color: #f1f1f1;
+			margin-top: 28px;
+			padding: 32px 40px 24px;
+		}
+
+		.footer-content {
+			max-width: 1600px;
+			margin: 0 auto;
+			display: grid;
+			grid-template-columns: repeat(5, 1fr);
+			gap: 20px;
+		}
+
+		.footer-section h4 {
+			margin-bottom: 12px;
+			color: #2c3e50;
+		}
+
+		.footer-section p,
+		.footer-section a {
+			color: #5a5a5a;
+			font-size: 13px;
+			line-height: 1.6;
+			text-decoration: none;
+		}
+
+		.footer-bottom {
+			max-width: 1600px;
+			margin: 22px auto 0;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding-top: 14px;
+			border-top: 1px solid #ddd;
+		}
+
+		.footer-social {
+			display: flex;
+			gap: 10px;
+		}
+
+		.footer-social-icon,
+		.social-icon {
+			width: 34px;
+			height: 34px;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			background: #335a92;
+			color: white;
+			text-decoration: none;
+			border-radius: 50%;
+			font-size: 14px;
+		}
+
+		.social-icons {
+			position: fixed;
+			right: 14px;
+			top: 50%;
+			transform: translateY(-50%);
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+		}
+
+		.footer-copyright {
+			max-width: 1600px;
+			margin: 16px auto 0;
+			font-size: 13px;
+			color: #5a5a5a;
+			display: flex;
+			justify-content: space-between;
+			gap: 20px;
+		}
+
+		@media (max-width: 1100px) {
+			.container {
+				flex-direction: column;
+			}
+
+			.sidebar {
+				width: 100%;
+			}
+
+			.jobs-grid {
+				grid-template-columns: 1fr;
+			}
+
+			.footer-content {
+				grid-template-columns: repeat(2, 1fr);
+			}
+
+			.search-row {
+				flex-wrap: wrap;
+			}
+		}
+
+		@media (max-width: 700px) {
+			header,
+			nav,
+			.hero,
+			.container,
+			.footer {
+				padding-left: 16px;
+				padding-right: 16px;
+			}
+
+			.footer-content {
+				grid-template-columns: 1fr;
+			}
+
+			.header-right {
+				display: none;
+			}
+
+			.hero h1 {
+				font-size: 32px;
+			}
+
+			.results-header h2 {
+				font-size: 24px;
+			}
+
+			.social-icons {
+				display: none;
+			}
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<div class="header-left">
+			<a class="logo" href="home.html">
+				<div class="logo-icon">My</div>
+				<div>
+					<div>My World</div>
+					<div style="font-size: 11px; color: #f9c74f; font-weight: 500; margin-top: 2px;">We Find The Best Local Talent</div>
+				</div>
+			</a>
+			<button class="country-selector">🇰🇭 Cambodia <span>▼</span></button>
+		</div>
+		<div class="header-right">
+			<button class="btn btn-anniversary">Anniversary</button>
+			<button class="btn btn-upload">Upload CV</button>
+			<button class="btn btn-login">Login</button>
+		</div>
+	</header>
+
+	<nav>
+		<a href="#">Job Search</a>
+		<a href="#">Recruitment Services</a>
+		<a href="#">Outsourcing Services</a>
+		<a href="#">About</a>
+		<a href="#">Blog & Resources</a>
+		<a href="#">Contact Us</a>
+	</nav>
+
+	<section class="hero">
+		<h1>Job Search</h1>
+	</section>
+
+	<div class="container">
+		<aside class="sidebar">
+			<div class="sidebar-section">
+				<h3>Sort By</h3>
+				<label class="filter-item">
+					<span>Relevance</span>
+				</label>
+			</div>
+
+			<div class="sidebar-section">
+				<h3>Locations</h3>
+				<label class="filter-item">
+					<span>Cambodia</span>
+					<span class="filter-count">2</span>
+				</label>
+			</div>
+
+			<div class="sidebar-section">
+				<h3>Business Sectors</h3>
+				<label class="filter-item">
+					<input type="checkbox" checked>
+					<span>Marketing</span>
+					<span class="filter-count">2</span>
+				</label>
+			</div>
+
+			<div class="sidebar-section">
+				<h3>Salaries</h3>
+				<label class="filter-item"><input type="checkbox"><span>$1,00 - $1,500</span><span class="filter-count">2</span></label>
+			
+			</div>
+
+			<div class="sidebar-section">
+				<h3>Job Types</h3>
+				<label class="filter-item"><input type="checkbox"><span>Staff</span><span class="filter-count">2</span></label>
+                <label class="filter-item"><input type="checkbox"><span>Manager / Senior Manager</span><span class="filter-count">2</span></label>
+			</div>
+		</aside>
+
+		<main class="main-content">
+
+			<div class="results-header">
+				<h2>All jobs near Cambodia in the Marketing sector</h2>
+				<span class="results-count">Found 2 jobs</span>
+			</div>
+
+			 <div class="jobs-grid">
+                <!-- Job Card 1 -->
+                <div class="job-card">
+                    <div class="job-header">
+                        <div class="job-posted">Posted 4 months ago</div>
+                        <h4 class="job-title">​Assistant Marketing Manager at a Growing Ticketing Service Company in Phnom Penh,...</h4>
+                        <div class="job-location">Phnom Penh | Up to $1,100 plus other benefits</div>
+                    </div>
+                    <div class="job-body">
+                        <p class="job-description">​Assistant Marketing Manager at a Growing Ticketing Service Company in Phnom Penh, Cambodia Develop and execute comprehensive marketing plans aligned with 
+                            company Up to $1,100 plus other benefits The Role Exciting opportunity for an experienced individual who has a strong digital marketing, brand...</p>
+                        <div class="job-buttons">
+                            <button class="btn-apply">Apply Now</button>
+                            <button class="btn-read">Read More</button>
+                            <button class="btn-save">💾 Save Job</button>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="job-card">
+                    <div class="job-header">
+                        <div class="job-posted">Posted 5 months ago</div>
+                        <h4 class="job-title">Marketing Support at a Leading Recruitment Agency in Phnom Penh</h4>
+                        <div class="job-location">Phnom Penh | Up to $300 plus other benefits</div>
+                    </div>
+                    <div class="job-body">
+                        <p class="job-description">​Marketing Support at a Leading Recruitment Agency in Phnom Penh Reporting Manager - Regional Head of Marketing Up to $300 plus other benefits Key Areas of 
+                            Responsibilities Responsibilities Regularly produce social media job posts and content Create compelling content to promote the brand and ser...</p>
+                        <div class="job-buttons">
+                            <button class="btn-apply">Apply Now</button>
+                            <button class="btn-read">Read More</button>
+                            <button class="btn-save">💾 Save Job</button>
+                        </div>
+                    </div>
+                </div>
+
+        
+
+              
+            </div>
+
+        </main>
+    </div>
+</body>
+</html>
